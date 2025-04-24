@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>양가연 서사 갈래의 흐름</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #5671f0;
+            --secondary: #3f37c9;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --youth-primary: #7209b7;
+            --youth-secondary: #3a0ca3;
+            --youth-accent: #4cc9f0;
+            --youth-light: #f0f7ff;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --author-color: #4cc9f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e6f1 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 {
+            text-align: center;
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: -2rem auto 2rem;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .instruction {
+            background-color: rgba(67, 97, 238, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+        
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        #resetButton {
+            background-color: var(--secondary);
+        }
+        
+        #resetButton:hover {
+            background-color: #4e46e5;
+        }
+        
+        #revealAllButton {
+            background-color: var(--success);
+        }
+        
+        #revealAllButton:hover {
+            background-color: #55c24f;
+        }
+        
+        #hideAllButton {
+            background-color: var(--accent);
+        }
+        
+        #hideAllButton:hover {
+            background-color: #ff3596;
+        }
+        
+        #output {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 100px;
+            line-height: 1.8;
+            border: 1px solid #e9ecef;
+            font-size: 1rem;
+            overflow-wrap: break-word;
+        }
+        
+        .section-header {
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .paragraph {
+            margin-bottom: 0.8rem;
+        }
+        
+        .hidden-word {
+            background-color: rgba(247, 37, 133, 0.1);
+            border: 1px dashed var(--accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--accent);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-block;
+            margin: 0 2px;
+        }
+        
+        .hidden-word:hover {
+            background-color: rgba(247, 37, 133, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .hidden-word-angle {
+            background-color: rgba(67, 97, 238, 0.1);
+            border: 1px dashed var(--primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--primary);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-block;
+            margin: 0 2px;
+        }
+        
+        .hidden-word-angle:hover {
+            background-color: rgba(67, 97, 238, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .hidden-word-author {
+            background-color: rgba(76, 201, 240, 0.1);
+            border: 1px dashed var(--author-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--author-color);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-block;
+            margin: 0 2px;
+        }
+        
+        .hidden-word-author:hover {
+            background-color: rgba(76, 201, 240, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .mode-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .mode-btn {
+            border: 1px solid var(--primary);
+            background-color: white;
+            color: var(--primary);
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .mode-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+                margin-top: -1.5rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+                flex: 1;
+                min-width: 100px;
+            }
+        }
+        
+        /* Youth Assistant Chat Styles */
+        .youth-section {
+            margin-top: 2rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .youth-header {
+            background: linear-gradient(135deg, var(--youth-primary) 0%, var(--youth-secondary) 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .youth-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .youth-emoji {
+            font-size: 1.5rem;
+        }
+        
+        .youth-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .youth-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background-color: #f5f7fb;
+        }
+        
+        .youth-content.open {
+            max-height: 10000px; /* Large enough to contain all content */
+            padding-bottom: 10px;
+        }
+        
+        /* Chat UI Styles */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+        }
+        
+        .chat-message {
+            display: flex;
+            margin-bottom: 15px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--youth-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .message-content {
+            background-color: white;
+            padding: 12px 16px;
+            border-radius: 18px;
+            border-top-left-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            max-width: calc(100% - 60px);
+            line-height: 1.5;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        .message-content::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 15px;
+            border: 8px solid transparent;
+            border-right-color: white;
+            border-left: 0;
+            border-top: 0;
+        }
+        
+        .chat-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .chat-name {
+            font-weight: 600;
+            color: var(--youth-primary);
+            margin-right: 8px;
+        }
+        
+        .chat-time {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
+        .chat-section-title {
+            font-weight: 600;
+            color: var(--youth-secondary);
+            margin-top: 10px;
+            margin-bottom: 5px;
+            border-bottom: 2px solid rgba(114, 9, 183, 0.1);
+            padding-bottom: 3px;
+        }
+        
+        .chat-highlight {
+            background-color: rgba(114, 9, 183, 0.1);
+            color: var(--youth-primary);
+            padding: 0 3px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .chat-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 5px;
+        }
+        
+        .chat-list li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .chat-list li:before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--youth-accent);
+        }
+        
+        .chat-message strong {
+            color: #4361ee;
+            font-weight: 600;
+        }
+        
+        .chat-divider {
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .chat-divider:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(108, 117, 125, 0.2);
+        }
+        
+        .chat-divider span {
+            position: relative;
+            background-color: #f5f7fb;
+            padding: 0 10px;
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            .youth-title {
+                font-size: 1.2rem;
+            }
+            
+            .avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+            
+            .message-content {
+                font-size: 0.9rem;
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>양가연 서정 갈래의 흐름</h1>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <div class="instruction">
+                학습지 내용 중 <span id="currentModeDesc">[대괄호]로 표시된 단어는 '?'로 가려져 있습니다.</span> 숨겨진 단어를 클릭하면 원래 단어가 표시됩니다.
+            </div>
+            
+            <div class="mode-selector">
+                <button id="bracketMode" class="mode-btn active">학습지 빈칸</button>
+                <button id="angleMode" class="mode-btn">작품명 빈칸</button>
+                <button id="authorMode" class="mode-btn">작가 빈칸</button>
+            </div>
+            
+            <div class="button-group">
+                <button id="resetButton">예제 학습지 보기</button>
+                <button id="revealAllButton">모두 보이기</button>
+                <button id="hideAllButton">모두 숨기기</button>
+            </div>
+            
+            <div id="output"></div>
+        </div>
+        
+        <!-- Youth Assistant Section -->
+        <div class="youth-section">
+            <div class="youth-header" id="youthToggle">
+                <div class="youth-title">
+                    <span class="youth-emoji">✨</span>
+                    <span>잼민이 어시스트</span>
+                </div>
+                <div class="youth-toggle">▼</div>
+            </div>
+            <div class="youth-content" id="youthContent">
+                <div class="chat-container">
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:30</div>
+                            </div>
+                            안녕! 서사 갈래 정리 좀 도와줄게~ 이거 암기하려면 진짜 머리 터질 것 같더라고ㅠㅠ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:31</div>
+                            </div>
+                            <strong>1. 옛날 시조때(?) 초창기</strong><br>
+                            단군신화부터 고구려ㆍ신라ㆍ백제의 건국 신화까지 ㄷㄷ... 이 시절엔 막 "우린 곰이 사람 된 신화 있다!" 이러면서 국뽕 제대로 차오르는 때임.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:31</div>
+                            </div>
+                            &lt;조신의 꿈&gt;, &lt;바보 온달&gt;, &lt;도미 처&gt; 같은 설화 ㅋㅋ 그냥 옛날판 썰방이라고 보면 됨.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:32</div>
+                            </div>
+                            삼국사기, 삼국유사(고려 때 편찬) 등 문헌에 실려서 지금까지 전해지는 중임.
+                        </div>
+                    </div>
+
+                    <div class="chat-divider">
+                        <span>10분 후</span>
+                    </div>
+
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:41</div>
+                            </div>
+                            <strong>2. 고려 시대로 넘어가 보자</strong><br>
+                            설화는 삼국시대 때부터 이미 삐용삐용 전해짐.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:42</div>
+                            </div>
+                            패관문학: 민간에서 떠도는 썰 모아서 편집+창의성 넣어서 재탄생. 이인로의 『파한집』, 최자의 『보한집』, 이제현의 『역옹패설』 등등 ㅇㅇ.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:43</div>
+                            </div>
+                            이게 훗날 소설로 폭발하는 씨앗이 됨. 진짜 중요한 포인트 ㄷㄷ.
+                        </div>
+                    </div>
+
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:45</div>
+                            </div>
+                            <strong>3. 가전(假傳) - 고려 중기 이후</strong><br>
+                            물건이나 사물을 의인화해서 전기(傳奇) 형식으로 서술ㅋㅋ 뭔가 평소에 "벼루가 나한테 불만을 토로했다" 이런 식?;;
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:46</div>
+                            </div>
+                            좀 교훈 넣으면서도 허구를 섞으니 "우와 이거 소설 가능?" 이런 느낌.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:47</div>
+                            </div>
+                            소설에 한 발 더 가까워졌다는 평을 듣는 장르.
+                        </div>
+                    </div>
+
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:50</div>
+                            </div>
+                            <strong>4. 조선 전기</strong><br>
+                            설화는 삼국시대 때부터 이미 삐용삐용 전해짐.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:51</div>
+                            </div>
+                            소설 수록 책 – 성현 『용재총화』, 어숙권 『패관잡기』
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:52</div>
+                            </div>
+                            소설집 - 신광한 『기재기이』
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:53</div>
+                            </div>
+                            우리나라 최초의 한문소설
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:54</div>
+                            </div>
+                            김시습의 『금오신화』가 갓 오브 갓. 여기 &lt;이생규장전&gt;, &lt;취유부벽정기&gt;, &lt;남염부주지&gt;, &lt;용궁부연록&gt; 막 잔뜩 들어 있음.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:55</div>
+                            </div>
+                            현실+비현실 섞은 전기소설 장르의 대표주자라 이때부터 작가들 "이거다!" 하고 꽂혔음.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:56</div>
+                            </div>
+                            임제 &lt;원생몽유록&gt;: 꿈 얘기 ㅋㅋ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 2:57</div>
+                            </div>
+                            &lt;수성지&gt;: 인간 마음을 의인화한다고... 뇌절?;; 아무튼 조선 전기부터 이미 상상력 풀가동.
+                        </div>
+                    </div>
+
+                    <div class="chat-divider">
+                        <span>5분 후</span>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:01</div>
+                            </div>
+                            <strong>5. 조선 후기</strong><br>
+                            "소설 대붐"이 온 시기 ㅋㅋ 대단하다 진짜.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:02</div>
+                            </div>
+                            허균 『홍길동전』: 우리나라 최초 '한글' 소설. "분명히 아버지를 아버지라 못 부른 홍길동" ㅠㅠ 서얼 차별 타파와 부패한 정치 개혁 의도로 지은 사회 소설임)
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:03</div>
+                            </div>
+                            <div class="chat-section-title">가정 소설</div>
+                            &lt;장화홍련전&gt;, &lt;콩쥐팥쥐전&gt;, 김만중 &lt;사씨남정기&gt; 등. 집안에서 난리 나는 스토리 ㅋㅋ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:04</div>
+                            </div>
+                            <div class="chat-section-title">가문 소설</div>
+                            &lt;완월회맹연&gt;, &lt;임화정연&gt; → 몇 대 걸친 흥망성쇠 ㄷㄷ 스케일 오지네.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:05</div>
+                            </div>
+                            <div class="chat-section-title">군담소설 / 영웅소설</div>
+                            전쟁+무쌍. 심지어 여성 영웅 &lt;박씨전&gt;, &lt;홍계월전&gt;도 나옴.
+                            <ul class="chat-list">
+                                <li>실화 전쟁소설: &lt;임진록&gt;, &lt;임경업전&gt; 등.</li>
+                                <li>창작 전쟁소설: &lt;유충렬전&gt;, &lt;조웅전&gt;.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:06</div>
+                            </div>
+                            <div class="chat-section-title">몽자류 소설</div>
+                            김만중 &lt;구운몽&gt;, 남영로 &lt;옥루몽&gt; → 꿈에서 다 해먹음 ㅋㅋ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:07</div>
+                            </div>
+                            <div class="chat-section-title">판소리계 소설</div>
+                            &lt;춘향전&gt;, &lt;심청전&gt;, &lt;흥부전&gt; → 시끄럽게 탁탁 치면서 부르는 판소리가 소설로? ㅋㅋ 해학+풍자 ㅗㅜㅑ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:08</div>
+                            </div>
+                            <div class="chat-section-title">우화 소설</div>
+                            동물에 빙의해 세상 비꼬기. &lt;장끼전&gt;, &lt;두껍전&gt; 등.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:09</div>
+                            </div>
+                            <span class="chat-highlight">세태 소설</span>: 사회 전환기에 사람들 개삽질하는 모습… 이것도 재밌게 풀어냄.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:10</div>
+                            </div>
+                            <span class="chat-highlight">한문 소설</span>: 실학파 문인 박지원 &lt;양반전&gt;, &lt;광문자전&gt; 등 → 양반 조져버리는 스토리 ㅋㅋ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:11</div>
+                            </div>
+                            <div class="chat-section-title">소설이 개유행한 이유</div>
+                            문학 즐기는 독자층 증가 + 민간 출판(방각본) & 세책가(책 대여소) 활성화 → "야 소설 빌려볼래?" 이러면서 막 돌아다님.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:12</div>
+                            </div>
+                            야담집: 『청구야담』처럼 설화를 한문으로 기록한 책들도 터져나옴.
+                        </div>
+                    </div>
+
+                    <div class="chat-divider">
+                        <span>15분 후</span>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:28</div>
+                            </div>
+                            <strong>6. 개화기 (조선 끝물~근대 초기)</strong><br>
+                            신소설 & 역사·전기 소설이 메인. 세상이 바뀌니까 소설도 바뀜 ㄷㄷ.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:29</div>
+                            </div>
+                            <div class="chat-section-title">신소설</div>
+                            봉건 박살, 개화, 독립, 계몽… "서양 좋아! 문명사회 짱!" 같은 내용 많음.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:30</div>
+                            </div>
+                            이인직 &lt;혈의 누&gt;: 우리나라 최초 신소설;; 여기서부터 여성 인권, 신교육 강조 ㄷㄷ 신세계다 ㅋㅋ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:31</div>
+                            </div>
+                            <div class="chat-section-title">역사·전기 소설</div>
+                            장지연, 신채호 → "나라 빼앗기면 안된다!" 애국심 뿜뿜.
+                        </div>
+                    </div>
+                    
+                    <!-- 이어서 나머지 시대별 내용 계속 -->
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:35</div>
+                            </div>
+                            <strong>7. 1930년대 (일제강점기 시절)</strong><br>
+                            문학이 '현실 파헤치기 vs 도시감성' 등등으로 확 갈라짐.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:36</div>
+                            </div>
+                            <div class="chat-section-title">리얼리즘 소설</div>
+                            이기영 &lt;고향&gt;: 농촌 현실의 참상 ㄷㄷ<br>
+                            강경애 &lt;지하촌&gt;: 빈민촌 최악 ㅠㅠ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:37</div>
+                            </div>
+                            <div class="chat-section-title">모더니즘 소설</div>
+                            박태원 &lt;소설가 구보 씨의 일일&gt;: 백수 소설가 하루종일 경성 걷는 얘기 ㅋㅋ<br>
+                            이상 &lt;날개&gt;: 정신세계 빡세게 탐구. "나는 새가 되고 싶다?" 약간 이런 느낌.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:38</div>
+                            </div>
+                            <span class="chat-highlight">농촌 소설</span>: 심훈 &lt;상록수&gt;, 김유정 &lt;만무방&gt; → 농촌 희망, 개혁 등등 ㅋㅋ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:39</div>
+                            </div>
+                            <span class="chat-highlight">역사 소설</span>: 김동인 &lt;운현궁의 봄&gt;, 현진건 &lt;무영탑&gt; → 옛날 썰 재해석.
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:40</div>
+                            </div>
+                            <span class="chat-highlight">가족사 소설</span>: 염상섭 &lt;삼대&gt;, 채만식 &lt;태평천하&gt; → 가족 대물림 이야기로 사회비판 ㅋㅋ
+                        </div>
+                    </div>
+                    
+                    <div class="chat-divider">
+                        <span>10분 후</span>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 3:50</div>
+                            </div>
+                            <strong>8. 광복 직후</strong><br>
+                            해방이 왔지만 세상 혼돈 ㅠㅠ
+                        </div>
+                    </div>
+                    
+                    <!-- 남은 시대별 내용 계속... -->
+                    
+                    <!-- 마지막 부분 -->
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 4:25</div>
+                            </div>
+                            <strong>흐름 요약</strong><br>
+                            신화/설화(고대~중세) → 2) 패관문학+가전(고려) → 3) 한문소설/전기소설(조선 전기) → 4) 한글소설 빵! (홍길동전부터 폭발, 조선 후기) → 5) 근대(개화기) 신소설 → 6) 일제강점기(1930년대) 리얼리즘·모더니즘·농촌소설 etc. → 7) 광복 직후(해방+혼란) → 8) 전쟁 후(1950~60) 재건 + 다양한 주제 → 9) 산업화(1970) → 10) 민주화(1980) → 11) 개인·일상 중시(1990~)
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="avatar">Z</div>
+                        <div class="message-content">
+                            <div class="chat-header">
+                                <div class="chat-name">잼쌤</div>
+                                <div class="chat-time">오늘 오후 4:27</div>
+                            </div>
+                            시험칠 때 시대별 키워드만 꿀 빨듯이 외우면 좀 살만할 듯 ㅋㅋ<br>
+                            너무 두려워 말고, "아~ 이때는 이런 상황이라 이런 소설이 나왔구나" 정도로 스토리 흐름 잡으면 기억하기 편할 거임.<br>
+                            화이팅 ㅠㅠ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>클릭하여 단어를 확인하고 암기하세요 2023</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const output = document.getElementById('output');
+            const resetButton = document.getElementById('resetButton');
+            const revealAllButton = document.getElementById('revealAllButton');
+            const hideAllButton = document.getElementById('hideAllButton');
+            const bracketModeBtn = document.getElementById('bracketMode');
+            const angleModeBtn = document.getElementById('angleMode');
+            const authorModeBtn = document.getElementById('authorMode');
+            const currentModeDesc = document.getElementById('currentModeDesc');
+            
+            let currentMode = 'brackets'; // 'brackets' or 'angles' or 'authors'
+
+            const defaultContent = `
+1.	고대가요
+1) 한국 문학 역사에서 서정 갈래의 첫 모습은 고대가요에서 찾아볼 수 있다.
+2) 고대 부족 국가~삼국 시대 초기(향가 성립 이전에 불린 노래를 통틀어 이르는 말)
+3) 고조선 - <공무도하가>
+고구려 – '유리왕' [황조가] (개인의 서정을 형상화한 작품)
+가야국 - <구지가> (가야국의 건국 신화와 결부됨 / 주술성이 짙은 작품)
+=위의 3작품 전승 과정: 한문으로 번역되어 전승됨. (한역)
+<정읍사> ([한글]로 기록되어 전하는 가장 앞선 시기의 작품)
+2.	한시
+1)	삼국 시대 [한자]가 보급되면서 한문에 능숙한 상층 귀족들이 창작 시작
+2)	고구려 – '을지문덕' <여수장우중문시>
+신라 – '최치원' <추야우중>, <제가야산독서당>
+3.	향가
+1)	향찰(한자의 음과 뜻을 빌려 우리말 어순으로 적은 차자 표기법) 표기
+2)	현전하는 향가 작품은 대부분 [신라시대]에 창작됨
+3)	작가층 – [승려, 귀족, 평민에 걸쳐 다양함]
+4)	① [4구체] <서동요>, <헌화가>
+② 8구체 <처용가>, <모죽지랑가>
+③ 10구체 <제망매가>, <찬기파랑가> (10구체 향가는 정형 시가로서의 형식을 온전히 갖춤)
+5)	내용 - 불교 이념 형상화, 당대 정치 상황을 배경으로 함, 주술적인 성격의 작품 등이 주류를 이룸
+4.	고려 시대
+1)	한시 : 고려 시대에도 상층 귀족들은 한시를 활발하게 창작하였다 – '정지상' <송인>
+무신 난 이후에는 [신흥사대부]들이 새로운 문학 담당층으로 등장하여 이전과 다른 문학 세계 펼쳤다
+o	'이규보', '김극기' 농민 시, 애민 시 (하층민의 삶을 소재로 함) (한시 폭을 넓힘.)
+2)	고려 가요(고려 속요, 속요)
+① [민요]에 기원을 둠
+② 전승 과정 고려 후기와 조선 전기에 궁중의 악장이나 사대부의 연희 공간에서 구전되다가 <악장가사>, <악학궤범>, <시용향악보> 등의 문헌에 한글로 수록되었다
+③ [단연체] <사모곡>
+[분연체] 고려가요 – <청산별곡>, <가시리> (분연체. 후렴구 삽입)
+④ 내용: 임금에 대한 충성, 남녀 간의 애정, 이별의 정한 등 다양한 주제
+5.	시조 (조선 시대의 대표적인 서정 갈래가 되었고 오늘날도 꾸준히 향유되고 있다.)
+1)	조선 전기: 사대부들의 이념과 예술적 취향을 형상화하는 데 초점이 맞춰져 있다
+① [강호시조]: 강호에 묻혀 살며 심성 도야의 이치를 그은 시조
+'이황' <도산십이곡>, '이이' <고산구곡가>, '맹사성' <강호사시가>, '이현보' <어부사>
+② [훈민시조]: 백성에게 유교적 윤리를 심어 주는 시조
+'정철' <훈민가>, '주세붕' <오륜가>
+③ [기녀시조]: 여성의 감정 노래 / <황진이>, <홍랑>, <계량>
+2)	조선 후기 : 문학 담당층이 확대되고, 서민 의식이 크게 성장. 문학 소재나 주제 다양해짐
+① 강호가도 + 임금의 은혜 노래 : 조선 전기 사대부의 미의식을 계승함
+'윤선도' <만흥>
+② 사설시조 : 서민의 일상적인 체험과 욕망 형상화. 지배층의 부조리 풍자 등 조선 후기 다양한 현실과 문제 의식을 담음
+③ 전문 가객 등장과 시조집 출간 : '김천택' [청구영언], '김수장' <해동가요>, '박효관', '안민영' <가곡원류>
+6.	가사
+1)	여러 갈래의 성격이 섞여 있지만 그중에 서정 갈래의 흐름 속에서 살펴볼 만한 작품들
+2)	'정극인' <상춘곡>, '송순' <면앙정가>, '정철' <속미인곡>
+7.	개화기
+1)	개화기는?? 1876년 강화도 조약 이후부터, 우리나라가 서양 문물의 영향을 받아 종래의 봉건적인 사회 질서를 타파하고 근대적 사회로 개혁되어 가던 시기였음
+2)	개화기 문학은?? 이 시기의 문학은 고전 문학의 형식을 이어받아 변화를 모색하면서 주로 봉건 질서의 타파, 애국 개화, 계몽 등의 내용을 다루었다
+3)	개화 가사 – '이용우' <애국가>
+창가 – '최남선' <경부철도가>
+신체시 – '최남선'의 <해에게서 소년에게> (비교적 자유로운 운율을 지닌 새로운 형식의 신체시 의의)
+8.	1910년대
+1)	<소년>, <태서문예신보> 등의 잡지나 신문에 많은 시가 실림
+2)	'최남선', '이광수', '김억' 등에 의해 과도기적인 변모를 보이다가
+3)	1919년 <창조>가 간행되면서 자유시 – '주요한' <불놀이> (우리나라 최초의 현대시)
+9.	1920년대
+1)	3.1 운동 이후 발간된 여러 신문과 잡지, 동인지를 통해 많은 시가 발표됨
+2)	서구 문학도 본격적으로 소개됨
+3)	① 감상적, 퇴폐적 낭만주의 시 주류 – '김억', '이상화', '박종화'
+② 저항 의식의 시 (1920년대 중반 넘어서) – '이상화' <빼앗긴 들에도 봄은 오는가>
+③ 우리나라 최초의 근대적 서사시 – '김동환' <국경의 밤>
+④ 경향시 – '임화' <우리 오빠와 화로>
+⑤ 전통적 정한 + 민요적 율격 – '김소월' 시집 <진달래꽃>
+⑥ 종교적 믿음 + 조국 광복의 의지 – '한용운' 시집 <님의 침묵>
+10.	1930년대
+1)	내용, 형식 면에서 한층 더 성숙해짐
+2)	초반
+① 순수시 – '김영랑' <모란이 피기까지는>
+② 모더니즘 시 – '김광균' <와사등>
+3)	후반
+① 생명파 시인 – '서정주', '오장환', '유치환'
+② 청록파 시인 – '박목월', '박두진', '조지훈'
+③ 한국 현대시의 다양한 가능성 보여준 – '정지용', '김기림', '이상', '백석'
+④ 저항시 – '윤동주' <참회록>, <쉽게 쓰여진 시>, '이육사' <청포도>, <절정>
+
+
+
+`;
+
+            function processText(text) {
+                let processedText = '';
+                let inParagraph = false;
+                
+                const lines = text.split('\n');
+                
+                for (let i = 0; i < lines.length; i++) {
+                    let line = lines[i];
+                    
+                    // Process section headers (numbered items) first
+                    const sectionMatch = line.match(/^(\d+\.)\s+(.*)/);
+                    
+                    if (sectionMatch) {
+                        // Close previous paragraph if needed
+                        if (inParagraph) {
+                            processedText += '</div>';
+                            inParagraph = false;
+                        }
+                        
+                        // Add section header
+                        processedText += `<div class="section-header">${sectionMatch[1]} `;
+                        line = sectionMatch[2]; // Keep remaining text for bracket processing
+                        
+                        // Process brackets or angles in the section title
+                        if (currentMode === 'brackets') {
+                            line = line.replace(/\[([^\]]+)\]/g, function(match, word) {
+                                const id = 'word_' + Math.random().toString(36).substr(2, 9);
+                                return `<span class="hidden-word" data-word="${word}" id="${id}">?</span>`;
+                            });
+                        } else if (currentMode === 'angles') {
+                            // Process angle brackets
+                            line = line.replace(/\<([^\>]+)\>/g, function(match, word) {
+                                const id = 'angle_' + Math.random().toString(36).substr(2, 9);
+                                return `<span class="hidden-word-angle" data-word="${word}" id="${id}">?</span>`;
+                            });
+                            
+                            // Also process double corner brackets
+                            line = line.replace(/『([^』]+)』/g, function(match, word) {
+                                const id = 'corner_' + Math.random().toString(36).substr(2, 9);
+                                return `<span class="hidden-word-angle" data-word="${word}" id="${id}">?</span>`;
+                            });
+                        } else if (currentMode === 'authors') {
+                            // Process single quotes for author names
+                            line = line.replace(/'([^']+)'/g, function(match, word) {
+                                const id = 'author_' + Math.random().toString(36).substr(2, 9);
+                                return `<span class="hidden-word-author" data-word="${word}" id="${id}">?</span>`;
+                            });
+                        }
+                        
+                        processedText += line + '</div><div class="paragraph">';
+                        inParagraph = true;
+                    } else if (line.trim() === '') {
+                        // Empty line - close paragraph if needed
+                        if (inParagraph) {
+                            processedText += '</div>';
+                            inParagraph = false;
+                        }
+                        
+                        processedText += '<div class="paragraph">';
+                        inParagraph = true;
+                    } else {
+                        // Regular line - process brackets or angles
+                        if (currentMode === 'brackets') {
+                            line = line.replace(/\[([^\]]+)\]/g, function(match, word) {
+                                const id = 'word_' + Math.random().toString(36).substr(2, 9);
+                                return `<span class="hidden-word" data-word="${word}" id="${id}">?</span>`;
+                            });
+                        } else if (currentMode === 'angles') {
+                            // Process angle brackets
+                            line = line.replace(/\<([^\>]+)\>/g, function(match, word) {
+                                const id = 'angle_' + Math.random().toString(36).substr(2, 9);
+                                return `<span class="hidden-word-angle" data-word="${word}" id="${id}">?</span>`;
+                            });
+                            
+                            // Also process double corner brackets
+                            line = line.replace(/『([^』]+)』/g, function(match, word) {
+                                const id = 'corner_' + Math.random().toString(36).substr(2, 9);
+                                return `<span class="hidden-word-angle" data-word="${word}" id="${id}">?</span>`;
+                            });
+                        } else if (currentMode === 'authors') {
+                            // Process single quotes for author names
+                            line = line.replace(/'([^']+)'/g, function(match, word) {
+                                const id = 'author_' + Math.random().toString(36).substr(2, 9);
+                                return `<span class="hidden-word-author" data-word="${word}" id="${id}">?</span>`;
+                            });
+                        }
+                        
+                        if (!inParagraph) {
+                            processedText += '<div class="paragraph">';
+                            inParagraph = true;
+                        }
+                        
+                        processedText += line + '<br>';
+                    }
+                }
+                
+                // Close final paragraph if needed
+                if (inParagraph) {
+                    processedText += '</div>';
+                }
+                
+                output.innerHTML = processedText;
+                
+                const hiddenWords = document.querySelectorAll('.hidden-word, .hidden-word-angle, .hidden-word-author');
+                hiddenWords.forEach(function(element) {
+                    element.removeEventListener('click', toggleWord); 
+                    element.addEventListener('click', toggleWord); 
+                });
+
+                localStorage.setItem('lastDisplayedContent', text);
+                localStorage.setItem('currentMode', currentMode);
+            }
+            
+            function toggleWord(event) {
+                const element = event.target;
+                if (element.textContent === '?') {
+                    element.textContent = element.getAttribute('data-word');
+                } else {
+                    element.textContent = '?';
+                }
+            }
+            
+            function revealAll() {
+                const hiddenWords = document.querySelectorAll('.hidden-word, .hidden-word-angle, .hidden-word-author');
+                hiddenWords.forEach(function(element) {
+                    element.textContent = element.getAttribute('data-word');
+                });
+            }
+            
+            function hideAll() {
+                const hiddenWords = document.querySelectorAll('.hidden-word, .hidden-word-angle, .hidden-word-author');
+                hiddenWords.forEach(function(element) {
+                    element.textContent = '?';
+                });
+            }
+
+            function loadInitialContent() {
+                const lastDisplayedContent = localStorage.getItem('lastDisplayedContent');
+                const savedMode = localStorage.getItem('currentMode');
+                
+                if (savedMode) {
+                    currentMode = savedMode;
+                    updateModeUI();
+                }
+                
+                if (lastDisplayedContent) {
+                    processText(lastDisplayedContent);
+                } else {
+                    processText(defaultContent);
+                }
+            }
+            
+            function resetToDefault() {
+                 if (confirm('현재 내용을 지우고 예제 학습지로 바꾸시겠습니까?')) {
+                    processText(defaultContent);
+                 }
+            }
+            
+            function updateModeUI() {
+                bracketModeBtn.classList.remove('active');
+                angleModeBtn.classList.remove('active');
+                authorModeBtn.classList.remove('active');
+                
+                if (currentMode === 'brackets') {
+                    bracketModeBtn.classList.add('active');
+                    currentModeDesc.textContent = "[대괄호]로 표시된 단어는 '?'로 가려져 있습니다.";
+                } else if (currentMode === 'angles') {
+                    angleModeBtn.classList.add('active');
+                    currentModeDesc.textContent = "<꺾쇠>와 『』로 표시된 작품명은 '?'로 가려져 있습니다.";
+                } else if (currentMode === 'authors') {
+                    authorModeBtn.classList.add('active');
+                    currentModeDesc.textContent = "'작은따옴표'로 표시된 작가명은 '?'로 가려져 있습니다.";
+                }
+            }
+            
+            bracketModeBtn.addEventListener('click', function() {
+                currentMode = 'brackets';
+                updateModeUI();
+                const lastDisplayedContent = localStorage.getItem('lastDisplayedContent');
+                if (lastDisplayedContent) {
+                    processText(lastDisplayedContent);
+                } else {
+                    processText(defaultContent);
+                }
+            });
+            
+            angleModeBtn.addEventListener('click', function() {
+                currentMode = 'angles';
+                updateModeUI();
+                const lastDisplayedContent = localStorage.getItem('lastDisplayedContent');
+                if (lastDisplayedContent) {
+                    processText(lastDisplayedContent);
+                } else {
+                    processText(defaultContent);
+                }
+            });
+            
+            authorModeBtn.addEventListener('click', function() {
+                currentMode = 'authors';
+                updateModeUI();
+                const lastDisplayedContent = localStorage.getItem('lastDisplayedContent');
+                if (lastDisplayedContent) {
+                    processText(lastDisplayedContent);
+                } else {
+                    processText(defaultContent);
+                }
+            });
+
+            resetButton.addEventListener('click', resetToDefault);
+            revealAllButton.addEventListener('click', revealAll);
+            hideAllButton.addEventListener('click', hideAll);
+            
+            // Youth Assistant Toggle
+            const youthToggle = document.getElementById('youthToggle');
+            const youthContent = document.getElementById('youthContent');
+            const youthToggleIcon = document.querySelector('.youth-toggle');
+            
+            youthToggle.addEventListener('click', function() {
+                youthContent.classList.toggle('open');
+                if (youthContent.classList.contains('open')) {
+                    youthToggleIcon.textContent = '▲';
+                    // Scroll to youth section if not visible
+                    const youthSection = document.querySelector('.youth-section');
+                    const rect = youthSection.getBoundingClientRect();
+                    if (rect.bottom > window.innerHeight) {
+                        youthSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                } else {
+                    youthToggleIcon.textContent = '▼';
+                }
+            });
+            
+            loadInitialContent();
+        });
+    </script>
+</body>
+</html>
