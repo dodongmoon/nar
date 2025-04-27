@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>양가연 서사 갈래의 흐름</title>
+    <title>양가연 서정 갈래의 흐름</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -485,6 +485,7 @@
                 <button id="bracketMode" class="mode-btn active">학습지 빈칸</button>
                 <button id="angleMode" class="mode-btn">작품명 빈칸</button>
                 <button id="authorMode" class="mode-btn">작가 빈칸</button>
+                <button id="combiMode" class="mode-btn">작품명+작가 빈칸</button>
             </div>
             
             <div class="button-group">
@@ -654,7 +655,7 @@
                                 <div class="chat-name">잼쌤</div>
                                 <div class="chat-time">오늘 오후 2:52</div>
                             </div>
-                            소설집 - 신광한 『기재기이』
+                            소설집 – '신광한' 『기재기이』
                         </div>
                     </div>
                     
@@ -676,7 +677,7 @@
                                 <div class="chat-name">잼쌤</div>
                                 <div class="chat-time">오늘 오후 2:54</div>
                             </div>
-                            김시습의 『금오신화』가 갓 오브 갓. 여기 &lt;이생규장전&gt;, &lt;취유부벽정기&gt;, &lt;남염부주지&gt;, &lt;용궁부연록&gt; 막 잔뜩 들어 있음.
+                            '김시습' 『금오신화』가 갓 오브 갓. 여기 &lt;이생규장전&gt;, &lt;취유부벽정기&gt;, &lt;남염부주지&gt;, &lt;용궁부연록&gt; 막 잔뜩 들어 있음.
                         </div>
                     </div>
                     
@@ -748,7 +749,7 @@
                                 <div class="chat-time">오늘 오후 3:03</div>
                             </div>
                             <div class="chat-section-title">가정 소설</div>
-                            &lt;장화홍련전&gt;, &lt;콩쥐팥쥐전&gt;, 김만중 &lt;사씨남정기&gt; 등. 집안에서 난리 나는 스토리 ㅋㅋ
+                            &lt;장화홍련전&gt;, &lt;콩쥐팥쥐전&gt;, '김만중' &lt;사씨남정기&gt; 등. 집안에서 난리 나는 스토리 ㅋㅋ
                         </div>
                     </div>
                     
@@ -788,7 +789,7 @@
                                 <div class="chat-time">오늘 오후 3:06</div>
                             </div>
                             <div class="chat-section-title">몽자류 소설</div>
-                            김만중 &lt;구운몽&gt;, 남영로 &lt;옥루몽&gt; → 꿈에서 다 해먹음 ㅋㅋ
+                            '김만중' &lt;구운몽&gt;, '남영로' &lt;옥루몽&gt; → 꿈에서 다 해먹음 ㅋㅋ
                         </div>
                     </div>
                     
@@ -834,7 +835,7 @@
                                 <div class="chat-name">잼쌤</div>
                                 <div class="chat-time">오늘 오후 3:10</div>
                             </div>
-                            <span class="chat-highlight">한문 소설</span>: 실학파 문인 박지원 &lt;양반전&gt;, &lt;광문자전&gt; 등 → 양반 조져버리는 스토리 ㅋㅋ
+                            <span class="chat-highlight">한문 소설</span>: '박지원' &lt;양반전&gt;, &lt;광문자전&gt; 등 → 양반 조져버리는 스토리 ㅋㅋ
                         </div>
                     </div>
                     
@@ -1046,9 +1047,10 @@
             const bracketModeBtn = document.getElementById('bracketMode');
             const angleModeBtn = document.getElementById('angleMode');
             const authorModeBtn = document.getElementById('authorMode');
+            const combiModeBtn = document.getElementById('combiMode');
             const currentModeDesc = document.getElementById('currentModeDesc');
             
-            let currentMode = 'brackets'; // 'brackets' or 'angles' or 'authors'
+            let currentMode = 'brackets'; // 'brackets' or 'angles' or 'authors' or 'combi'
 
             const defaultContent = `
 1.	고대가요
@@ -1153,13 +1155,15 @@ o	'이규보', '김극기' 농민 시, 애민 시 (하층민의 삶을 소재로
                         processedText += `<div class="section-header">${sectionMatch[1]} `;
                         line = sectionMatch[2]; // Keep remaining text for bracket processing
                         
-                        // Process brackets or angles in the section title
+                        // Process different types of content based on mode
                         if (currentMode === 'brackets') {
                             line = line.replace(/\[([^\]]+)\]/g, function(match, word) {
                                 const id = 'word_' + Math.random().toString(36).substr(2, 9);
                                 return `<span class="hidden-word" data-word="${word}" id="${id}">?</span>`;
                             });
-                        } else if (currentMode === 'angles') {
+                        }
+                        
+                        if (currentMode === 'angles' || currentMode === 'combi') {
                             // Process angle brackets
                             line = line.replace(/\<([^\>]+)\>/g, function(match, word) {
                                 const id = 'angle_' + Math.random().toString(36).substr(2, 9);
@@ -1171,7 +1175,9 @@ o	'이규보', '김극기' 농민 시, 애민 시 (하층민의 삶을 소재로
                                 const id = 'corner_' + Math.random().toString(36).substr(2, 9);
                                 return `<span class="hidden-word-angle" data-word="${word}" id="${id}">?</span>`;
                             });
-                        } else if (currentMode === 'authors') {
+                        }
+                        
+                        if (currentMode === 'authors' || currentMode === 'combi') {
                             // Process single quotes for author names
                             line = line.replace(/'([^']+)'/g, function(match, word) {
                                 const id = 'author_' + Math.random().toString(36).substr(2, 9);
@@ -1191,13 +1197,15 @@ o	'이규보', '김극기' 농민 시, 애민 시 (하층민의 삶을 소재로
                         processedText += '<div class="paragraph">';
                         inParagraph = true;
                     } else {
-                        // Regular line - process brackets or angles
+                        // Regular line - process according to mode
                         if (currentMode === 'brackets') {
                             line = line.replace(/\[([^\]]+)\]/g, function(match, word) {
                                 const id = 'word_' + Math.random().toString(36).substr(2, 9);
                                 return `<span class="hidden-word" data-word="${word}" id="${id}">?</span>`;
                             });
-                        } else if (currentMode === 'angles') {
+                        }
+                        
+                        if (currentMode === 'angles' || currentMode === 'combi') {
                             // Process angle brackets
                             line = line.replace(/\<([^\>]+)\>/g, function(match, word) {
                                 const id = 'angle_' + Math.random().toString(36).substr(2, 9);
@@ -1209,7 +1217,9 @@ o	'이규보', '김극기' 농민 시, 애민 시 (하층민의 삶을 소재로
                                 const id = 'corner_' + Math.random().toString(36).substr(2, 9);
                                 return `<span class="hidden-word-angle" data-word="${word}" id="${id}">?</span>`;
                             });
-                        } else if (currentMode === 'authors') {
+                        }
+                        
+                        if (currentMode === 'authors' || currentMode === 'combi') {
                             // Process single quotes for author names
                             line = line.replace(/'([^']+)'/g, function(match, word) {
                                 const id = 'author_' + Math.random().toString(36).substr(2, 9);
@@ -1292,6 +1302,7 @@ o	'이규보', '김극기' 농민 시, 애민 시 (하층민의 삶을 소재로
                 bracketModeBtn.classList.remove('active');
                 angleModeBtn.classList.remove('active');
                 authorModeBtn.classList.remove('active');
+                combiModeBtn.classList.remove('active');
                 
                 if (currentMode === 'brackets') {
                     bracketModeBtn.classList.add('active');
@@ -1302,6 +1313,9 @@ o	'이규보', '김극기' 농민 시, 애민 시 (하층민의 삶을 소재로
                 } else if (currentMode === 'authors') {
                     authorModeBtn.classList.add('active');
                     currentModeDesc.textContent = "'작은따옴표'로 표시된 작가명은 '?'로 가려져 있습니다.";
+                } else if (currentMode === 'combi') {
+                    combiModeBtn.classList.add('active');
+                    currentModeDesc.textContent = "<꺾쇠>, 『』로 표시된 작품명과 '작은따옴표'로 표시된 작가명이 '?'로 가려져 있습니다.";
                 }
             }
             
@@ -1329,6 +1343,17 @@ o	'이규보', '김극기' 농민 시, 애민 시 (하층민의 삶을 소재로
             
             authorModeBtn.addEventListener('click', function() {
                 currentMode = 'authors';
+                updateModeUI();
+                const lastDisplayedContent = localStorage.getItem('lastDisplayedContent');
+                if (lastDisplayedContent) {
+                    processText(lastDisplayedContent);
+                } else {
+                    processText(defaultContent);
+                }
+            });
+            
+            combiModeBtn.addEventListener('click', function() {
+                currentMode = 'combi';
                 updateModeUI();
                 const lastDisplayedContent = localStorage.getItem('lastDisplayedContent');
                 if (lastDisplayedContent) {
